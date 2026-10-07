@@ -1,0 +1,12 @@
+........................                                                 [100%]
+=============================== warnings summary ===============================
+tests/test_pipeline.py::test_exact_resume_export_and_inference
+tests/test_pipeline.py::test_weight_corruption_detected
+tests/test_pipeline.py::test_resume_rejects_changed_data_config
+tests/test_pipeline.py::test_disable_proprio_with_canonical_state_and_reload
+  ${REMOTE_WORKDIR}/repo/src/jointact/training.py:112: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+    scaler = torch.cuda.amp.GradScaler(enabled=device.type == "cuda" and t.precision == "fp16")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+24 passed, 4 warnings in 9.93s
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

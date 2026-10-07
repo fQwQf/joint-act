@@ -1,0 +1,15 @@
+[
+  {
+    "task_id": 0,
+    "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+    "trial": 0,
+    "seed": 42,
+    "success": false,
+    "steps": 5,
+    "control_mean_ms": 33.47799628973007,
+    "control_p95_ms": 99.63381513953208,
+    "decisions": 2,
+    "decision_mean_ms": 83.67022965103388,
+    "decision_p95_ms": 107.6156078837812
+  }
+]

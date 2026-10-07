@@ -1,0 +1,8 @@
+{
+  "world_size": 1,
+  "device": "cpu",
+  "torch_version": "2.9.1+cu128",
+  "trainable_parameters": 19209124,
+  "total_parameters": 7560446308,
+  "exact_resume_workers_zero": true
+}

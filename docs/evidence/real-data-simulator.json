@@ -1,0 +1,22 @@
+{
+  "successes": 0,
+  "trials": 1,
+  "success_rate": 0.0,
+  "wilson95": [
+    0.0,
+    0.7934567085261071
+  ],
+  "per_task": {
+    "0": {
+      "successes": 0,
+      "trials": 1,
+      "success_rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.7934567085261071
+      ]
+    }
+  },
+  "observation_orientation": "180-degree rotation",
+  "completed": true
+}

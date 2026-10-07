@@ -1,0 +1,37 @@
+{
+  "model_id": "openvla/openvla-7b",
+  "revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+  "files": {
+    "model-00001-of-00003.safetensors": {
+      "bytes": 6948961960,
+      "sha256": "10d8636256018712c5e5c823d12e22b5797f99bb721bd123bf6bf2379892be85",
+      "verified": true
+    },
+    "model-00002-of-00003.safetensors": {
+      "bytes": 6971232040,
+      "sha256": "2050b14f21d48904d269f48d5a980fecea87cd7b36641d9b0f015e72d1fe216a",
+      "verified": true
+    },
+    "model-00003-of-00003.safetensors": {
+      "bytes": 1162406824,
+      "sha256": "ea65305a1577f36f721965bf84c8caec0a948ce7ce84d754701637376c531fef",
+      "verified": true
+    }
+  },
+  "index_sha256": "b3a4516f74a609422002e265e542c23ddf11e54c2b781e1c0d4e23e5181f3fd0",
+  "metadata_files": {
+    "preprocessor_config.json": "bd024783fb785cbdfe35b710b621c5e8678d4c157a9ba625675e67d40d1757da",
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "processing_prismatic.py": "06563586bbc73d36501a14a231a3174904ede830d33174d0c625ece8e931ef1e",
+    "generation_config.json": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1",
+    "model.safetensors.index.json": "b3a4516f74a609422002e265e542c23ddf11e54c2b781e1c0d4e23e5181f3fd0",
+    "processor_config.json": "167e026d8121f6cb0bf5c18310b97ba8139152f970822bb3824213bd37dc7a76",
+    "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "special_tokens_map.json": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61",
+    "tokenizer_config.json": "f5f1d3ed015ebb71cf11686ff00bc8e0c25957bbf3952f95312cecc9b168fbea",
+    "added_tokens.json": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1",
+    "modeling_prismatic.py": "9ce241c5ca09a4bed73654d0ca509baaff0fc5887d0bdd62e360ca8254f7794a",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "openvla_oft": {
+    "url": "https://github.com/moojink/openvla-oft",
+    "commit": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "role": "reference implementation and external baseline",
+    "license": "MIT"
+  },
+  "openvla_model": {
+    "id": "openvla/openvla-7b",
+    "revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+    "role": "pretrained backbone; this commit is the default verified source"
+  },
+  "libero": {
+    "url": "https://github.com/Lifelong-Robot-Learning/LIBERO",
+    "commit": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "role": "optional benchmark simulator and task assets"
+  },
+  "open_jev": {
+    "url": "https://github.com/Zefan-Cai/Open-Jev",
+    "commit": "bd4118882f733574a3250a4b65fe4d884130c08b",
+    "role": "architectural reference for converting a generative backbone into a decision readout; no vendored source"
+  },
+  "openjev_frozen": {
+    "url": "https://github.com/zhihz/openjev",
+    "commit": "ff94f61ec3b2d6a71b4c2b01e76104dfe37da4e6",
+    "role": "reference for a frozen instruction model with restricted next-token logits; no vendored source"
+  },
+  "nanojev": {
+    "url": "https://github.com/TianyuCodings/NanoJev",
+    "commit": "76fdfc9ecdca45a9bcef17991a07d3041a87685a",
+    "role": "reference for pretrained decoder adaptation and expert behavior targets; no vendored source"
+  },
+  "modified_libero_rlds": {
+    "id": "openvla/modified_libero_rlds",
+    "revision": "6ce6aaaaabdbe590b1eef5cd29c0d33f14a08551",
+    "role": "public demonstration data shared by OpenVLA and OpenVLA-OFT"
+  },
+  "onejev": {
+    "url": "https://github.com/OmniJev/OneJev",
+    "commit": "7e3007d7829c7f59f5af15c60fb8454a11e37170",
+    "role": "reference for answer-slot CE/Brier and data conversion; no vendored source"
+  }
+}

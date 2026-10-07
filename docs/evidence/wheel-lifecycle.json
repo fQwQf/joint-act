@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "commands": [
+    [
+      "fixture",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data"
+    ],
+    [
+      "validate-data",
+      "--root",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data"
+    ],
+    [
+      "prepare",
+      "--root",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data/artifacts",
+      "--horizon",
+      "4",
+      "--num-modes",
+      "8",
+      "--iterations",
+      "6"
+    ],
+    [
+      "train",
+      "--config",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/config.yaml",
+      "--stop-after",
+      "6"
+    ],
+    [
+      "train",
+      "--config",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/config.yaml",
+      "--resume",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/run/checkpoints"
+    ],
+    [
+      "evaluate-offline",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/run/checkpoints",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/test.json"
+    ],
+    [
+      "export",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/run/checkpoints",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/bundle"
+    ],
+    [
+      "predict",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/bundle",
+      "--observation",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/observation.json",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/prediction.json"
+    ],
+    [
+      "benchmark",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/bundle",
+      "--observation",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/observation.json",
+      "--warmup",
+      "1",
+      "--repeats",
+      "3",
+      "--output",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/latency.json"
+    ],
+    [
+      "calibrate",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/bundle",
+      "--root",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data",
+      "--artifacts",
+      "${REMOTE_WORKDIR}/wheel-smoke-final/data/artifacts"
+    ]
+  ],
+  "fixture_only": true,
+  "robot_performance_evidence": false,
+  "module_path_verified": "${REMOTE_WORKDIR}/wheel-installed-final/jointact/__init__.py",
+  "wheel_sha256": "a7692fc8f3ffa6b5f02090f7f0a2df8cf7fed218a3da6817e63f31cbb43b33d1"
+}

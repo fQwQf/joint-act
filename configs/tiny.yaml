@@ -1,0 +1,27 @@
+model:
+  backbone: tiny
+  hidden_dim: 32
+  head_dim: 64
+  horizon: 4
+  num_modes: 8
+  num_images: 2
+  image_size: 32
+  gradient_checkpointing: false
+data:
+  root: data/fixture
+  artifacts: data/fixture/artifacts
+  workers: 0
+train:
+  output: runs/tiny
+  device: cpu
+  precision: fp32
+  batch_size: 8
+  grad_accumulation: 1
+  max_steps: 40
+  warmup_steps: 2
+  learning_rate: 0.003
+  log_every: 5
+  save_every: 20
+  eval_every: 20
+  eval_batches: 5
+  min_free_disk_gb: 0.2

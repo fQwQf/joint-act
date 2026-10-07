@@ -1,0 +1,23 @@
+name: core
+on: [push, pull_request]
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11']
+    env:
+      CUDA_VISIBLE_DEVICES: ''
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -e '.[dev,serve]'
+      - run: ruff check src tests scripts
+      - run: pytest -q
+      - run: python scripts/smoke.py --output /tmp/jointact-smoke
+      - run: python -m build

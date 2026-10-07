@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "transport": "actual_loopback_http",
+  "device": "cpu",
+  "horizon": 4,
+  "backbone": "tiny",
+  "fixture_only": true
+}

@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "commands": [
+    [
+      "validate-data",
+      "--root",
+      "${REMOTE_WORKDIR}/real-libero"
+    ],
+    [
+      "prepare",
+      "--root",
+      "${REMOTE_WORKDIR}/real-libero",
+      "--output",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/artifacts",
+      "--horizon",
+      "4",
+      "--num-modes",
+      "8",
+      "--max-samples",
+      "1000",
+      "--iterations",
+      "6"
+    ],
+    [
+      "train",
+      "--config",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/config.yaml",
+      "--stop-after",
+      "1"
+    ],
+    [
+      "train",
+      "--config",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/config.yaml",
+      "--resume",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/run/checkpoints"
+    ],
+    [
+      "export",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/run/checkpoints",
+      "--output",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/bundle"
+    ],
+    [
+      "predict",
+      "--checkpoint",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/bundle",
+      "--precision",
+      "bf16",
+      "--observation",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/observation.json",
+      "--output",
+      "${REMOTE_WORKDIR}/pretrained7b-smoke/prediction.json"
+    ]
+  ],
+  "dataset_audit": {
+    "episodes": 10,
+    "frames": 1238,
+    "splits": {
+      "train": 10,
+      "val": 0,
+      "test": 0
+    },
+    "signature": [
+      7,
+      8,
+      2,
+      "eef_delta_xyz_axisangle_gripper_open01"
+    ],
+    "hashes_verified": true,
+    "manifest_sha256": "ee1778deb65d29c687d5c5c29728ba094e9b0a45f3037e29ea9d9e2b102379c2"
+  },
+  "base_role": "pretrained",
+  "precision": "bf16",
+  "optimizer_steps": 2,
+  "lora_updated": true,
+  "prediction_shape": [
+    4,
+    7
+  ],
+  "robot_performance_evidence": false
+}

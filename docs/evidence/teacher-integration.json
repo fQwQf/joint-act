@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "base_role": "random-integration",
+  "real_robot_demonstrations": true,
+  "scored_samples": 2,
+  "batch_samples": 3,
+  "teacher_coverage": 0.6666666865348816,
+  "teacher_kl": 0.023237869143486023,
+  "loss": 1.8132654428482056,
+  "robot_performance_evidence": false
+}

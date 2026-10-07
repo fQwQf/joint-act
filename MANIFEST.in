@@ -1,0 +1,7 @@
+include README.md LICENSE THIRD_PARTY.md upstream.lock.json
+recursive-include licenses *.txt
+recursive-include configs *.yaml
+recursive-include docs *.md *.json *.log
+recursive-include scripts *.py *.sh
+recursive-include tests *.py
+exclude .env

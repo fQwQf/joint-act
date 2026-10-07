@@ -1,0 +1,23 @@
+{
+  "dataset_id": "openvla/modified_libero_rlds",
+  "revision": "6ce6aaaaabdbe590b1eef5cd29c0d33f14a08551",
+  "suite": "libero_spatial_no_noops",
+  "full_suite_episodes": 432,
+  "downloaded_shards": 1,
+  "downloaded_shard_episodes": 27,
+  "converted_check_episodes": 10,
+  "files": {
+    "dataset_info.json": {
+      "bytes": 930,
+      "sha256": "7fc2bdd61cfdafc80ff60143805954b37bdb436dfb206d13fd705dffdf863078"
+    },
+    "features.json": {
+      "bytes": 9195,
+      "sha256": "d6f56537585d15aa99772c6da942e5957cceda26b57a18098ef8e3164cdaffde"
+    },
+    "libero_spatial-train.tfrecord-00000-of-00016": {
+      "bytes": 118202941,
+      "sha256": "6d6360559a4b71df3bcabd9b55a75451f04375449ca5267616cbc1c21528eac5"
+    }
+  }
+}

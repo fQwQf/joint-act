@@ -1,0 +1,21 @@
+{
+  "temperature": 0.3002515435218811,
+  "samples": 8,
+  "split": "val",
+  "semantics": "behavior_mode_distribution",
+  "device": "cpu",
+  "precision": "bf16",
+  "weights_sha256": "1d6d2ab3259ee3b81fcce6675c78cefb45c813792beccf2b14f159343a602d45",
+  "before": {
+    "mode_accuracy": 0.625,
+    "mode_nll": 1.4069520235061646,
+    "mode_brier": 0.6633136868476868,
+    "mode_ece": 0.3329773545265198
+  },
+  "after": {
+    "mode_accuracy": 0.625,
+    "mode_nll": 0.8672200441360474,
+    "mode_brier": 0.5328782200813293,
+    "mode_ece": 0.1300639510154724
+  }
+}
