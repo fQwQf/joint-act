@@ -1,0 +1,64 @@
+{
+  "archive_roundtrip": true,
+  "validated_dataset": {
+    "episodes": 432,
+    "frames": 52970,
+    "splits": {
+      "train": 351,
+      "val": 35,
+      "test": 46
+    },
+    "signature": [
+      7,
+      8,
+      2,
+      "eef_delta_xyz_axisangle_gripper_open01"
+    ],
+    "hashes_verified": true,
+    "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4"
+  },
+  "codebook_shape": [
+    64,
+    8,
+    7
+  ],
+  "checkpoints": [
+    {
+      "checkpoint": "study-alignment/runs/aligned_cost-seed42/checkpoints/step-00001008",
+      "step": 1008,
+      "weights_sha256": "ed610ad1def87ebb9d68d770905e77f8267e21f50418c8b82b62c1313602aaa4",
+      "training_sha256": "cd0b102818071ae350075377059b45c94552c59c674e506a4461e77444149229"
+    },
+    {
+      "checkpoint": "study-spatial/runs/joint-seed42/checkpoints/step-00000100",
+      "step": 100,
+      "weights_sha256": "4e89ef1a5182132bb1402603778ad25f26815d94227e81daf18c2ddc7175b3d5",
+      "training_sha256": "09f788b8c5d1deaa6c7a3c4b14a3961905bcc6268de8e4a2b5a441cd7d97e41b"
+    },
+    {
+      "checkpoint": "study-spatial/runs/joint-seed42/checkpoints/step-00001000",
+      "step": 1000,
+      "weights_sha256": "970bba18678d5ae891f72c7705d23144922a7995db12e2ad5e2a6c5d29eb9b2b",
+      "training_sha256": "d29f2959f8df67b95e2c203c65772c2989640a2489bf2292306f31b0aa3c3519"
+    },
+    {
+      "checkpoint": "study-spatial/runs/regression-seed42/checkpoints/step-00000100",
+      "step": 100,
+      "weights_sha256": "55ab034c64d06aa4e0dc723e98decd863401db491645ce5cf1f3773be546a2e5",
+      "training_sha256": "ccf9d089260974ed89cda96b992e660a5145edcba9fb4200f14df60ba775440b"
+    },
+    {
+      "checkpoint": "study-spatial/runs/regression-seed42/checkpoints/step-00001000",
+      "step": 1000,
+      "weights_sha256": "c71b304d509aac8df46c7716b0f02759c0839ba842892328364871696ee90d71",
+      "training_sha256": "9c8f044a6e0b6f846245ab5a0d9cd65e0157afb267f399cea584b3fa64ce0aa8"
+    }
+  ],
+  "restored_checkpoints": 5,
+  "source_paths_preserved": true,
+  "base_model_verified_files": 16,
+  "base_model_revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+  "migration_tests_passed": 2,
+  "ci": "https://github.com/fQwQf/joint-act/actions/runs/37761504920",
+  "new_server_training_verified": false
+}

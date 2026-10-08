@@ -1,0 +1,32 @@
+{
+  "format": "jointact-migration-v1",
+  "name": "experiments",
+  "members": [
+    "study-spatial",
+    "study-alignment",
+    "study-alignment-v2",
+    "repo/src",
+    "repo/scripts",
+    "repo/configs",
+    "repo/pyproject.toml",
+    "repo/upstream.lock.json"
+  ],
+  "codec": "tar+zstd",
+  "parts": [
+    {
+      "name": "experiments.tar.zst.part-000",
+      "bytes": 536870912,
+      "sha256": "90b2d990faba97b27f2222200f6a27c8df8d621091007d17803604211d902406"
+    },
+    {
+      "name": "experiments.tar.zst.part-001",
+      "bytes": 536870912,
+      "sha256": "2daf66e476617e209f1824b33a457638d83a0f07fb7f291321f739fecb2a3758"
+    },
+    {
+      "name": "experiments.tar.zst.part-002",
+      "bytes": 391426449,
+      "sha256": "f549fd0317c34e1d091db11e3b9ac0b1cab878fbce139348d38847cfacf6d0b3"
+    }
+  ]
+}

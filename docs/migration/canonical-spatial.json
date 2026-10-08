@@ -1,0 +1,75 @@
+{
+  "format": "jointact-migration-v1",
+  "name": "canonical-spatial",
+  "members": [
+    "libero-spatial-full"
+  ],
+  "codec": "tar+zstd",
+  "parts": [
+    {
+      "name": "canonical-spatial.tar.zst.part-000",
+      "bytes": 536870912,
+      "sha256": "9b6114ab033c1e7026554175bec8cd07479114ccd8f35bf837d48690651aa576"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-001",
+      "bytes": 536870912,
+      "sha256": "4c12929e96b0183343104deb9a8071bc2ec88201193200b9a927e38a928f13b4"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-002",
+      "bytes": 536870912,
+      "sha256": "061e3b17af5c7047ef83636858815b04b3d61650923eb86e6ea2e8d280a1673d"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-003",
+      "bytes": 536870912,
+      "sha256": "c966bcdc1435f20b595774951a848e715c8ff62d5c09f362d64a64fe995d09ce"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-004",
+      "bytes": 536870912,
+      "sha256": "107a44f6970b5034783debf0040081015b5c8427f37ba37c4c9ff7119b5cbced"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-005",
+      "bytes": 536870912,
+      "sha256": "b2fd9aba8f969ee2f7275c6b5ec8430a086a8a063e15575d7f955d05a141d40e"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-006",
+      "bytes": 536870912,
+      "sha256": "7228b73af95177c4fd6addfb276afdfa029539c8f9c20fd308045f949e78a108"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-007",
+      "bytes": 536870912,
+      "sha256": "5bdef92f675bb781d601eae4ef258c978841f909eedfb561add4f54ac9aa15d8"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-008",
+      "bytes": 536870912,
+      "sha256": "5e4c1e803cfcd827cac7d61f1075fc6db2a0d42f742f3f36bcd692f0bb0953c6"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-009",
+      "bytes": 536870912,
+      "sha256": "2fc886d39d9da7a74ca44fafaaa549a1c3e04a70549bd0985aef6618361fd487"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-010",
+      "bytes": 536870912,
+      "sha256": "2eddb7f173ab35e7180bde4b1eb440cc23a14d25b2aca53f80fccbd0c0f75f4a"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-011",
+      "bytes": 536870912,
+      "sha256": "12e4ffb1fd625625a3cced20538ce7963fb1627931a00709c052de0f41618e29"
+    },
+    {
+      "name": "canonical-spatial.tar.zst.part-012",
+      "bytes": 424006492,
+      "sha256": "ca7af2f328fd81f4772cbdfc62a317747026f08ef35a12443cf14cd878f6f39e"
+    }
+  ]
+}
