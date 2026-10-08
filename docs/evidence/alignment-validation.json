@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-08",
+  "host": "WHU140piROOT",
+  "source_sha256": "dee635e15525704d206bc59322012036ce035c42f45498e2887fae02d0db57d2",
+  "pytest": {
+    "passed": 38,
+    "log": "alignment-pytest.log"
+  },
+  "ruff": "passed",
+  "ddp": {
+    "passed": true,
+    "world_size": 2,
+    "device": "cpu",
+    "bitwise_continuation": true,
+    "tensors": 47,
+    "fixture_only": true,
+    "rank_zero_failure_propagated": true,
+    "nonfinite_failure_propagated": true,
+    "alignment_objectives": true
+  },
+  "gpu_probe": {
+    "backbone": "pretrained OpenVLA 7B",
+    "device": "RTX 3090",
+    "start_step": 1000,
+    "end_step": 1008,
+    "new_optimizer_steps": 8,
+    "optimization_samples": 128,
+    "optimization_seconds": 72.18752195872366,
+    "peak_reserved_gib": 15.07421875,
+    "source_sha256": "d64b371458261a879d7de6fba280baec7e496426419d7ed9aa35e2a408ef88f3",
+    "details": "alignment-gpu-probe.json",
+    "note": "Probe precedes the conditional-error aggregation logging fix. The fix was subsequently checked by the full CPU test suite and DDP; objective gradients are unchanged."
+  },
+  "formal_study": {
+    "plan": "alignment-study.json",
+    "configs": "alignment-configs",
+    "variants": 5,
+    "status": "prepared; no formal continuation runs executed",
+    "closed_loop_evaluated": false
+  },
+  "efficacy_claim": false
+}

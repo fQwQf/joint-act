@@ -34,7 +34,14 @@ jointact doctor --path "$HF_HOME"
 
 Model loading uses the explicitly configured repository's remote Python implementation. Pin a verified commit in `model.revision` to make it reproducible. The resolved commit is captured in the training configuration if HF supplies it. LoRA bundles require that same frozen base checkpoint. Offline use requires the base and processor already cached; set `HF_HUB_OFFLINE=1`.
 
-Start with batch size 1, frozen visual encoders/projector, LoRA rank 16, BF16 and gradient checkpointing on a 24 GB card. Fit depends on prompt length, camera count, software and image resolution; the recipe is a starting configuration, not a measured memory guarantee. The whole base model is currently placed on each DDP rank; DDP does not shard a 7B model. Larger multi-card training increases throughput, while model sharding would require a separate implementation.
+Batch size 1, frozen visual encoders/projector, LoRA rank 16, BF16 and gradient
+checkpointing fit on a tested RTX 3090 24 GiB with two 224-pixel cameras, `H=8`
+and `K=64`: a 32-step probe peaked at 14.87 GiB allocated / 15.07 GiB reserved.
+See [the measured configuration and limits](validation.md#rtx-3090-feasibility).
+Fit still depends on prompt length, camera count, software, image resolution and
+batch size. The whole base model is placed on each DDP rank; DDP does not shard
+a 7B model. Multi-card training increases throughput, while model sharding
+would require a separate implementation.
 
 ## Data conversion environment
 
@@ -62,4 +69,8 @@ scripts/remote_sync.sh HOST /path/to/remote/jointact
 ssh HOST 'cd /path/to/remote/jointact && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 /path/to/python -m pytest -q'
 ```
 
-Inspect `nvidia-smi` and `df -h` immediately before GPU jobs. The built-in guard refuses GPUs with more than 1 GiB allocated or utilization above 10%, unless the caller explicitly passes `--allow-shared-gpu`. It never terminates another process or deletes another user's cache.
+Inspect `nvidia-smi` and `df -h` immediately before GPU jobs. The built-in guard
+refuses GPUs with another compute process, more than 1 GiB allocated or utilization
+above 10%, unless sharing is explicitly enabled. Low memory usage alone is not
+evidence that a GPU is free. It never terminates another process or deletes
+another user's cache.

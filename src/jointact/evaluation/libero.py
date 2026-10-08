@@ -8,8 +8,8 @@ import numpy as np
 
 from jointact.data.schema import ACTION_SEMANTICS
 from jointact.inference import ChunkController
-from jointact.metrics import wilson_interval
-from jointact.utils import atomic_json, check_disk, sha256
+from jointact.utils import check_disk, json_digest, seed_everything, sha256, source_fingerprint
+from jointact.evaluation.records import TrialLedger, evaluation_lock, trial_seed
 
 MAX_STEPS = dict(libero_spatial=220, libero_object=280, libero_goal=300, libero_10=520, libero_90=400)
 
@@ -61,7 +61,8 @@ def action_to_libero(action):
     return action
 
 
-def run_episode(env, initial_state, runtime, instruction, max_steps, settle_steps=10, execute_horizon=None):
+def run_episode(env, initial_state, runtime, instruction, max_steps, settle_steps=10, execute_horizon=None,
+                collect_frames=True):
     if max_steps < 1 or settle_steps < 0:
         raise ValueError("max_steps must be positive and settle_steps nonnegative")
     controller = ChunkController(runtime, execute_horizon)
@@ -74,7 +75,8 @@ def run_episode(env, initial_state, runtime, instruction, max_steps, settle_step
     success = False
     for step in range(max_steps):
         observation = observation_from_libero(obs, instruction, runtime.config.model.num_images)
-        frames.append(observation["images"][0])
+        if collect_frames:
+            frames.append(observation["images"][0])
         replanned = not controller.queue
         started = time.perf_counter()
         action = controller.action(observation)
@@ -93,7 +95,8 @@ def run_episode(env, initial_state, runtime, instruction, max_steps, settle_step
 
 
 def evaluate_libero(runtime, output, suite="libero_spatial", trials=50, seed=42, task_ids=None,
-                    execute_horizon=None, video=False, max_steps=None, min_free_gb=2.0):
+                    execute_horizon=None, video=False, max_steps=None, min_free_gb=2.0, resume=False,
+                    max_new_trials=None):
     try:
         from libero.libero import benchmark, get_libero_path
         from libero.libero.envs import OffScreenRenderEnv
@@ -103,58 +106,68 @@ def evaluate_libero(runtime, output, suite="libero_spatial", trials=50, seed=42,
         raise ValueError("LIBERO requires canonical delta-pose/open01 action semantics")
     if trials < 1 or suite not in MAX_STEPS or (max_steps is not None and max_steps < 1):
         raise ValueError("Invalid trial count or suite")
+    if max_new_trials is not None and max_new_trials < 1:
+        raise ValueError("max_new_trials must be positive")
     output = Path(output)
-    if (output / "episodes.jsonl").exists():
-        raise FileExistsError("Choose a new evaluation output directory")
     check_disk(output, min_free_gb)
     output.mkdir(parents=True, exist_ok=True)
     suite_instance = benchmark.get_benchmark_dict()[suite]()
     ids = list(range(suite_instance.n_tasks)) if task_ids is None else task_ids
     if not ids or any(i < 0 or i >= suite_instance.n_tasks for i in ids) or len(set(ids)) != len(ids):
         raise ValueError("Invalid or duplicate task IDs")
-    config = dict(suite=suite, trials_per_task=trials, task_ids=ids, seed=seed,
+    executed = runtime.config.model.horizon if execute_horizon is None else execute_horizon
+    if not 1 <= executed <= runtime.config.model.horizon:
+        raise ValueError("Invalid executed horizon")
+    import importlib.metadata
+    config = dict(protocol_version="jointact-libero-v2", suite=suite, trials_per_task=trials, task_ids=ids, seed=seed,
                   max_steps=max_steps or MAX_STEPS[suite], settle_steps=10,
-                  execute_horizon=execute_horizon or runtime.config.model.horizon, policy_config=runtime.config.to_dict(),
-                  initial_state_assets={})
-    atomic_json(output / "config.json", config)
-    records = []
+                  execute_horizon=executed, policy_config=runtime.config.to_dict(),
+                  policy_identity=runtime.identity, precision=runtime.precision, device=str(runtime.device), video=video,
+                  source_sha256=source_fingerprint()["sha256"],
+                  environment={name: importlib.metadata.version(name) for name in ("mujoco", "robosuite", "torch", "numpy")},
+                  training_data_sha256=runtime.metadata["manifest_sha256"],
+                  observation=dict(num_images=runtime.config.model.num_images, proprio_dim=runtime.config.model.proprio_dim,
+                                   image_size=runtime.config.model.image_size, crop_scale=runtime.config.data.crop_scale),
+                  initial_state_assets={}, task_assets={})
+    tasks = {}
     for task_id in ids:
         task = suite_instance.get_task(task_id)
         state_path = Path(get_libero_path("init_states")) / task.problem_folder / task.init_states_file
         states = load_initial_states(state_path)
         config["initial_state_assets"][str(task_id)] = dict(file=task.init_states_file, sha256=sha256(state_path))
-        atomic_json(output / "config.json", config)
         if trials > len(states):
             raise ValueError(f"Requested {trials} trials but task {task_id} has only {len(states)} unique initial states")
         bddl = Path(get_libero_path("bddl_files")) / task.problem_folder / task.bddl_file
-        env = OffScreenRenderEnv(bddl_file_name=str(bddl), camera_heights=256, camera_widths=256)
-        try:
-            env.seed(seed)
-            for trial in range(trials):
-                check_disk(output, min_free_gb)
-                result, frames = run_episode(env, states[trial], runtime, task.language, config["max_steps"],
-                                              execute_horizon=execute_horizon)
-                row = dict(task_id=task_id, task=task.language, trial=trial, seed=seed, **result)
-                if video:
-                    import imageio.v2 as imageio
-                    path = output / f"task-{task_id:03d}-trial-{trial:03d}.mp4"
-                    imageio.mimsave(path, frames, fps=20)
-                    row["video"] = path.name
-                with open(output / "episodes.jsonl", "a", encoding="utf-8") as stream:
-                    stream.write(json.dumps(row, allow_nan=False) + "\n")
-                records.append(row)
-                print(json.dumps(row), flush=True)
-        finally:
-            env.close()
-    successes = sum(row["success"] for row in records)
-    per_task = {}
-    for task_id in ids:
-        subset = [r for r in records if r["task_id"] == task_id]
-        won = sum(r["success"] for r in subset)
-        per_task[str(task_id)] = dict(successes=won, trials=len(subset), success_rate=won / len(subset),
-                                     wilson95=wilson_interval(won, len(subset)))
-    result = dict(successes=successes, trials=len(records), success_rate=successes / len(records),
-                  wilson95=wilson_interval(successes, len(records)), per_task=per_task,
-                  observation_orientation="180-degree rotation", completed=True)
-    atomic_json(output / "summary.json", result)
-    return result
+        config["task_assets"][str(task_id)] = dict(file=task.bddl_file, sha256=sha256(bddl), instruction=task.language)
+        tasks[task_id] = (task, states, bddl)
+    with evaluation_lock(output):
+        ledger = TrialLedger(output, config, resume)
+        added = 0
+        for task_id, (task, states, bddl) in tasks.items():
+            pending = [trial for trial in range(trials) if (task_id, trial) not in ledger.rows]
+            if not pending:
+                continue
+            env = OffScreenRenderEnv(bddl_file_name=str(bddl), camera_heights=256, camera_widths=256)
+            try:
+                for trial in pending:
+                    check_disk(output, min_free_gb)
+                    individual_seed = trial_seed(seed, task_id, trial)
+                    seed_everything(individual_seed)
+                    env.seed(individual_seed)
+                    result, frames = run_episode(env, states[trial], runtime, task.language, config["max_steps"],
+                                                  execute_horizon=executed, collect_frames=video)
+                    row = dict(task_id=task_id, task=task.language, trial=trial, seed=seed,
+                               trial_seed=individual_seed, protocol_sha256=json_digest(config), **result)
+                    if video:
+                        import imageio.v2 as imageio
+                        path = output / f"task-{task_id:03d}-trial-{trial:03d}.mp4"
+                        imageio.mimsave(path, frames, fps=20)
+                        row["video"] = path.name
+                    ledger.commit(row)
+                    print(json.dumps(row), flush=True)
+                    added += 1
+                    if max_new_trials is not None and added >= max_new_trials:
+                        return ledger.publish()
+            finally:
+                env.close()
+        return ledger.publish()

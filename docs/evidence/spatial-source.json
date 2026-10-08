@@ -1,0 +1,136 @@
+{
+  "repo": "openvla/modified_libero_rlds",
+  "revision": "6ce6aaaaabdbe590b1eef5cd29c0d33f14a08551",
+  "files": [
+    {
+      "path": "libero_spatial_no_noops/1.0.0/dataset_info.json",
+      "size": 930,
+      "sha256": "7fc2bdd61cfdafc80ff60143805954b37bdb436dfb206d13fd705dffdf863078",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/features.json",
+      "size": 9195,
+      "sha256": "d6f56537585d15aa99772c6da942e5957cceda26b57a18098ef8e3164cdaffde",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00000-of-00016",
+      "size": 118202941,
+      "sha256": "6d6360559a4b71df3bcabd9b55a75451f04375449ca5267616cbc1c21528eac5",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00001-of-00016",
+      "size": 117638784,
+      "sha256": "9b0c706e9796304dbc40be5f0ccf6a407a471cd3aecbecfc3baab2af26a2a631",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00002-of-00016",
+      "size": 124105247,
+      "sha256": "e2be727ff29840040cecbce68ee17d7118129cc64d58c2a60ea38967a7482456",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00003-of-00016",
+      "size": 114001484,
+      "sha256": "ca5c55cef57390f3e3c8a4ef0cbfe8b155b9f7e5a8b37c993f676faecbe25a3a",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00004-of-00016",
+      "size": 123511634,
+      "sha256": "c29887f8cee8d761439ec865884b8ba1877a3c3d2d886f1f0e802b93b863f268",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00005-of-00016",
+      "size": 119156456,
+      "sha256": "58dddf6a314a3c2fa6db405bf185313f0984f1778db84bcc9799279fbf5cca26",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00006-of-00016",
+      "size": 125554213,
+      "sha256": "2dfaef9cfc3786ca2b99124f220bb883c654e173fd77a1da2d77d6ae50a16373",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00007-of-00016",
+      "size": 116016812,
+      "sha256": "e86de6f6a090f7abe323debf91a04f6e19e4b22a8fe87ca40a244b4f3304fd28",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00008-of-00016",
+      "size": 115049321,
+      "sha256": "7d787a79b404b65b8cd213e004359908c2a00473531992abec7d580efce6d722",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00009-of-00016",
+      "size": 123912982,
+      "sha256": "917d05bb4c3f9938b75e08c7344e2282f72d1be97a6b20ea9938dc25ef573612",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00010-of-00016",
+      "size": 125254897,
+      "sha256": "ffa2df4872379462dcbb76e79fb79eb14770530ccfdad0ba2f676f80ed583cff",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00011-of-00016",
+      "size": 115996912,
+      "sha256": "561b132619aa8980d125ee4bac6543e1ad3f1fee4bfe9b2a81877bcb2dab829a",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00012-of-00016",
+      "size": 120268059,
+      "sha256": "d7bf2ea3e7f42a4b942d1661fad0160745062627cedb9f7e94f06c809e2fb3af",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00013-of-00016",
+      "size": 119776671,
+      "sha256": "ba8aafffa7d4bd741f21b1fca95ebf952b201f2b8440a8e140fab00dd82494b0",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00014-of-00016",
+      "size": 116903288,
+      "sha256": "6c432441521c78f87ce61e5886faa563b48869410c3d38d82b21f0de8e1a98b2",
+      "transport": "verified_existing",
+      "verified": true
+    },
+    {
+      "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00015-of-00016",
+      "size": 119276849,
+      "sha256": "d58bd00542030bf10bafe262d7e294b36f8347f70a783d83bce14ef6375b953c",
+      "transport": "hf-mirror.com_official_hash_verified",
+      "verified": true
+    }
+  ],
+  "file_count": 18,
+  "total_bytes": 1914636675,
+  "all_verified": true,
+  "verified_at_unix": 1791431048.1500626
+}

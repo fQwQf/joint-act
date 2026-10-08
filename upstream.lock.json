@@ -39,5 +39,15 @@
     "url": "https://github.com/OmniJev/OneJev",
     "commit": "7e3007d7829c7f59f5af15c60fb8454a11e37170",
     "role": "reference for answer-slot CE/Brier and data conversion; no vendored source"
+  },
+  "minibet": {
+    "url": "https://github.com/notmahi/miniBET",
+    "commit": "641df6191228764f5e57e009a394d1d6c9eef28f",
+    "role": "inspected mode/offset supervision reference; no vendored source"
+  },
+  "vqbet": {
+    "url": "https://github.com/jayLEE0301/vq_bet_official",
+    "commit": "09d4851288ca5deaaa1ab367a208e520f8ee9a84",
+    "role": "inspected mode/offset supervision reference; no vendored source"
   }
 }

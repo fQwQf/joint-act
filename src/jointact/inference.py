@@ -1,6 +1,8 @@
 """Stateless batched policy inference and explicit chunk execution state."""
 
 from collections import deque
+import hashlib
+import json
 from pathlib import Path
 import time
 
@@ -8,12 +10,12 @@ import numpy as np
 from PIL import Image
 import torch
 
-from jointact.checkpoint import load_policy
+from jointact.checkpoint import load_policy, resolve_checkpoint
 from jointact.data.dataset import ObservationCollator
 from jointact.data.normalization import Normalizer
 from jointact.data.schema import ACTION_SEMANTICS
 from jointact.training import autocast_context
-from jointact.utils import check_gpu, move_batch
+from jointact.utils import atomic_json, check_gpu, json_digest, move_batch, sha256
 
 
 class PolicyRuntime:
@@ -24,6 +26,13 @@ class PolicyRuntime:
         self.device, self.precision = torch.device(device), precision
         dtype = torch.float32 if precision == "fp32" else torch.float16 if precision == "fp16" else torch.bfloat16
         self.model, self.config, self.metadata = load_policy(checkpoint, device, dtype)
+        resolved = resolve_checkpoint(checkpoint)
+        with open(resolved / "manifest.json", encoding="utf-8") as stream:
+            manifest = json.load(stream)
+        self.identity = dict(weights_sha256=manifest["weights_sha256"],
+                             artifacts_sha256=sha256(resolved / "artifacts.json"),
+                             model_config_sha256=json_digest(self.config.model.__dict__),
+                             base_model=manifest["base_model"], base_revision=manifest["base_revision"])
         self.action_normalizer = Normalizer(**self.metadata["action_normalizer"])
         self.proprio_normalizer = Normalizer(**self.metadata["proprio_normalizer"])
         self.collator = ObservationCollator(self.config.model, self.model.processor, False, self.config.data.crop_scale)
@@ -31,15 +40,14 @@ class PolicyRuntime:
         self.calibration = None
         calibration_path = Path(checkpoint) / "calibration.json"
         if calibration_path.exists():
-            import json
             from jointact.checkpoint import read_weights
-            from jointact.utils import sha256
             with open(calibration_path, encoding="utf-8") as stream:
                 self.calibration = json.load(stream)
             resolved, _ = read_weights(checkpoint)
             if self.calibration["weights_sha256"] != sha256(resolved / "weights.pt"):
                 raise ValueError("Calibration was fitted for different weights")
             self.temperature = self.calibration["temperature"]
+        self.identity["temperature"] = self.temperature
 
     def _record(self, observation):
         images = observation["images"]
@@ -98,30 +106,78 @@ class PolicyRuntime:
     def predict(self, observation):
         return self.predict_batch([observation])[0]
 
-    def benchmark(self, observation, warmup=5, repeats=30):
+    def benchmark(self, observation, warmup=5, repeats=30, execute_horizon=None):
+        return self.benchmark_many([observation], warmup, repeats, execute_horizon)
+
+    def benchmark_many(self, observations, warmup=5, repeats=30, execute_horizon=None):
         if warmup < 0 or repeats < 1:
             raise ValueError("Invalid benchmark counts")
-        for _ in range(warmup):
-            self.predict(observation)
+        if not observations:
+            raise ValueError("Need at least one benchmark observation")
+        executed = self.config.model.horizon if execute_horizon is None else execute_horizon
+        if not 1 <= executed <= self.config.model.horizon:
+            raise ValueError("Invalid executed horizon")
+        fingerprints = []
+        for obs in observations:
+            record = self._record(obs)
+            fingerprints.append(dict(instruction=record["instruction"], proprio=record["proprio"].tolist(),
+                images=[dict(shape=list(a.shape), sha256=hashlib.sha256(a.tobytes()).hexdigest()) for a in record["images"]]))
+        for index in range(warmup):
+            self.predict(observations[index % len(observations)])
+        if self.device.type == "cuda":
+            torch.cuda.reset_peak_memory_stats(self.device)
         durations = []
-        for _ in range(repeats):
+        for index in range(repeats):
             if self.device.type == "cuda":
                 torch.cuda.synchronize(self.device)
             start = time.perf_counter()
-            self.predict(observation)
+            self.predict(observations[index % len(observations)])
             if self.device.type == "cuda":
                 torch.cuda.synchronize(self.device)
             durations.append((time.perf_counter() - start) * 1000)
         return dict(scope="preprocessing+model+unnormalization", batch_size=1, warmup=warmup, repeats=repeats,
                     median_ms=float(np.median(durations)), p95_ms=float(np.percentile(durations, 95)),
                     mean_ms=float(np.mean(durations)), horizon=self.config.model.horizon,
-                    device=str(self.device), precision=self.precision)
+                    execute_horizon=executed, executed_actions_per_second=1000 * executed / float(np.mean(durations)),
+                    duration_ms=durations, observations=len(observations), workload_sha256=json_digest(fingerprints),
+                    policy_identity=self.identity, model_config=self.config.model.__dict__,
+                    device=str(self.device), precision=self.precision, torch_version=torch.__version__,
+                    cuda_version=torch.version.cuda,
+                    gpu_name=torch.cuda.get_device_name(self.device) if self.device.type == "cuda" else None,
+                    peak_allocated_mib=torch.cuda.max_memory_allocated(self.device) / 2**20 if self.device.type == "cuda" else None,
+                    peak_reserved_mib=torch.cuda.max_memory_reserved(self.device) / 2**20 if self.device.type == "cuda" else None)
+
+
+def benchmark_dataset(runtime, output, root=None, split="test", observations=8, warmup=5, repeats=30,
+                      execute_horizon=None):
+    from jointact.data.dataset import EpisodeDataset
+    if observations < 1:
+        raise ValueError("observations must be positive")
+    root = root or runtime.config.data.root
+    if sha256(Path(root) / "manifest.jsonl") != runtime.metadata["manifest_sha256"]:
+        raise ValueError("Benchmark dataset does not match the policy artifacts")
+    data = EpisodeDataset(root, 1, split)
+    try:
+        # Round-robin distinct episodes, then advance through their time axis.
+        records, identities = [], []
+        for index in range(observations):
+            episode = index % len(data.rows)
+            timestep = ((index // len(data.rows)) * 17) % data.rows[episode]["length"]
+            item = data[int(data.offsets[episode]) + timestep]
+            records.append({key: item[key] for key in ("images", "proprio", "instruction")})
+            identities.append(dict(episode_id=item["episode_id"], timestep=timestep))
+        result = runtime.benchmark_many(records, warmup, repeats, execute_horizon)
+        result.update(split=split, observation_ids=identities, manifest_sha256=runtime.metadata["manifest_sha256"])
+        atomic_json(output, result)
+        return result
+    finally:
+        data.close()
 
 
 class ChunkController:
     def __init__(self, runtime, execute_horizon=None):
         self.runtime = runtime
-        self.execute_horizon = execute_horizon or runtime.config.model.horizon
+        self.execute_horizon = runtime.config.model.horizon if execute_horizon is None else execute_horizon
         if not 1 <= self.execute_horizon <= runtime.config.model.horizon:
             raise ValueError("execute_horizon must be between 1 and the predicted horizon")
         self.queue = deque()

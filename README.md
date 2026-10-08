@@ -4,6 +4,12 @@ JointAct converts pretrained vision-language-action features into a direct distr
 
 The repository includes OpenVLA adaptation, episode-preserving LIBERO import, train-only normalization and codebook fitting, single-device and DDP training, exact continuation, offline teacher scoring, held-out mode calibration, inference bundles, HTTP serving, latency measurement, and closed-loop LIBERO evaluation. A small image-conditioned backbone exercises the same lifecycle without downloading foundation-model weights.
 
+Controlled multi-seed head studies, residual diagnostics, failure propagation,
+resumable LIBERO trials and paired result comparisons are described in the
+[research workflow](docs/research-workflow.md). These facilities prepare and
+measure experiments; completed training and task-performance evidence are
+recorded separately in the validation log.
+
 This is research software. The synthetic fixture checks engineering behavior; it does not establish robot success or a performance improvement over OpenVLA-OFT. See [validation evidence](docs/validation.md) for what has actually run.
 
 ## Install
@@ -127,3 +133,15 @@ and real-data interfaces; task success requires a separate full closed-loop run.
 ## Attribution
 
 OpenVLA and OpenVLA-OFT informed preprocessing conventions and integration. Jev-style open implementations informed the decision readout interface. See [third-party provenance](THIRD_PARTY.md) and [upstream pins](upstream.lock.json). Original code is MIT licensed. Pretrained models, datasets and optional simulators retain their respective licenses.
+
+The [action-aware supervision study](docs/alignment-study.md) implements gated
+predicted-mode residual supervision and expected prototype-cost supervision as
+independent ablations. It supports controlled continuation from existing checkpoints
+and does not change the inference architecture.
+
+## Migration package
+
+The private GitHub release `migration-2026-10-08` contains the complete prepared
+Spatial dataset and saved training states as checksummed, chunked attachments.
+See the [migration guide](docs/migration/README.md) for restoration, pinned base-model
+download, environment setup and continuation on another GPU server.

@@ -1,0 +1,318 @@
+* Getting build dependencies for sdist...
+running egg_info
+writing src/joint_act.egg-info/PKG-INFO
+writing dependency_links to src/joint_act.egg-info/dependency_links.txt
+writing entry points to src/joint_act.egg-info/entry_points.txt
+writing requirements to src/joint_act.egg-info/requires.txt
+writing top-level names to src/joint_act.egg-info/top_level.txt
+reading manifest file 'src/joint_act.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files found matching '.env'
+adding license file 'LICENSE'
+writing manifest file 'src/joint_act.egg-info/SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building sdist...
+running sdist
+running egg_info
+writing src/joint_act.egg-info/PKG-INFO
+writing dependency_links to src/joint_act.egg-info/dependency_links.txt
+writing entry points to src/joint_act.egg-info/entry_points.txt
+writing requirements to src/joint_act.egg-info/requires.txt
+writing top-level names to src/joint_act.egg-info/top_level.txt
+reading manifest file 'src/joint_act.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files found matching '.env'
+adding license file 'LICENSE'
+writing manifest file 'src/joint_act.egg-info/SOURCES.txt'
+running check
+creating joint_act-0.1.0
+creating joint_act-0.1.0/configs
+creating joint_act-0.1.0/docs
+creating joint_act-0.1.0/docs/evidence
+creating joint_act-0.1.0/licenses
+creating joint_act-0.1.0/scripts
+creating joint_act-0.1.0/src/joint_act.egg-info
+creating joint_act-0.1.0/src/jointact
+creating joint_act-0.1.0/src/jointact/data
+creating joint_act-0.1.0/src/jointact/evaluation
+creating joint_act-0.1.0/src/jointact/models
+creating joint_act-0.1.0/tests
+copying files to joint_act-0.1.0...
+copying LICENSE -> joint_act-0.1.0
+copying MANIFEST.in -> joint_act-0.1.0
+copying README.md -> joint_act-0.1.0
+copying THIRD_PARTY.md -> joint_act-0.1.0
+copying pyproject.toml -> joint_act-0.1.0
+copying upstream.lock.json -> joint_act-0.1.0
+copying configs/libero_joint.yaml -> joint_act-0.1.0/configs
+copying configs/libero_regression.yaml -> joint_act-0.1.0/configs
+copying configs/tiny.yaml -> joint_act-0.1.0/configs
+copying docs/architecture.md -> joint_act-0.1.0/docs
+copying docs/data.md -> joint_act-0.1.0/docs
+copying docs/deployment.md -> joint_act-0.1.0/docs
+copying docs/experiments.md -> joint_act-0.1.0/docs
+copying docs/installation.md -> joint_act-0.1.0/docs
+copying docs/libero.md -> joint_act-0.1.0/docs
+copying docs/pretrained-decision-data.md -> joint_act-0.1.0/docs
+copying docs/remote-workspace.md -> joint_act-0.1.0/docs
+copying docs/research-workflow.md -> joint_act-0.1.0/docs
+copying docs/training.md -> joint_act-0.1.0/docs
+copying docs/validation.md -> joint_act-0.1.0/docs
+copying docs/evidence/build.log -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/calibration-bf16.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/ddp-continuation.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/document-links.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/environment.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/fixture-lifecycle.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/http.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-config.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-lifecycle.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-run.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-source.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-time.log -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pretrained7b-training.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/pytest.log -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/real-data-random-lifecycle.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/real-data-simulator-trials.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/real-data-simulator.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/robot-data-source.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/ruff.log -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/source-manifest.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/teacher-integration.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/upstream-random-lifecycle.json -> joint_act-0.1.0/docs/evidence
+copying docs/evidence/wheel-lifecycle.json -> joint_act-0.1.0/docs/evidence
+copying licenses/openvla-oft-MIT.txt -> joint_act-0.1.0/licenses
+copying scripts/create_random_openvla.py -> joint_act-0.1.0/scripts
+copying scripts/ddp_smoke.py -> joint_act-0.1.0/scripts
+copying scripts/download_libero.py -> joint_act-0.1.0/scripts
+copying scripts/fetch_upstream.sh -> joint_act-0.1.0/scripts
+copying scripts/remote_sync.sh -> joint_act-0.1.0/scripts
+copying scripts/robot_data_smoke.py -> joint_act-0.1.0/scripts
+copying scripts/server_smoke.py -> joint_act-0.1.0/scripts
+copying scripts/setup_libero.py -> joint_act-0.1.0/scripts
+copying scripts/smoke.py -> joint_act-0.1.0/scripts
+copying src/joint_act.egg-info/PKG-INFO -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/joint_act.egg-info/SOURCES.txt -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/joint_act.egg-info/dependency_links.txt -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/joint_act.egg-info/entry_points.txt -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/joint_act.egg-info/requires.txt -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/joint_act.egg-info/top_level.txt -> joint_act-0.1.0/src/joint_act.egg-info
+copying src/jointact/__init__.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/calibration.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/checkpoint.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/cli.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/config.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/fixture.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/inference.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/metrics.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/serve.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/study.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/teacher.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/training.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/utils.py -> joint_act-0.1.0/src/jointact
+copying src/jointact/data/__init__.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/codebook.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/convert.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/dataset.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/normalization.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/prepare.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/data/schema.py -> joint_act-0.1.0/src/jointact/data
+copying src/jointact/evaluation/__init__.py -> joint_act-0.1.0/src/jointact/evaluation
+copying src/jointact/evaluation/libero.py -> joint_act-0.1.0/src/jointact/evaluation
+copying src/jointact/evaluation/records.py -> joint_act-0.1.0/src/jointact/evaluation
+copying src/jointact/models/__init__.py -> joint_act-0.1.0/src/jointact/models
+copying src/jointact/models/backbones.py -> joint_act-0.1.0/src/jointact/models
+copying src/jointact/models/policy.py -> joint_act-0.1.0/src/jointact/models
+copying tests/conftest.py -> joint_act-0.1.0/tests
+copying tests/test_data.py -> joint_act-0.1.0/tests
+copying tests/test_deployment.py -> joint_act-0.1.0/tests
+copying tests/test_model.py -> joint_act-0.1.0/tests
+copying tests/test_openvla_adapter.py -> joint_act-0.1.0/tests
+copying tests/test_pipeline.py -> joint_act-0.1.0/tests
+copying tests/test_research_lifecycle.py -> joint_act-0.1.0/tests
+copying src/joint_act.egg-info/SOURCES.txt -> joint_act-0.1.0/src/joint_act.egg-info
+Writing joint_act-0.1.0/setup.cfg
+Creating tar archive
+removing 'joint_act-0.1.0' (and everything under it)
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building wheel from sdist
+* Getting build dependencies for wheel...
+running egg_info
+writing src/joint_act.egg-info/PKG-INFO
+writing dependency_links to src/joint_act.egg-info/dependency_links.txt
+writing entry points to src/joint_act.egg-info/entry_points.txt
+writing requirements to src/joint_act.egg-info/requires.txt
+writing top-level names to src/joint_act.egg-info/top_level.txt
+reading manifest file 'src/joint_act.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files found matching '.env'
+adding license file 'LICENSE'
+writing manifest file 'src/joint_act.egg-info/SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/jointact
+copying src/jointact/utils.py -> build/lib/jointact
+copying src/jointact/config.py -> build/lib/jointact
+copying src/jointact/study.py -> build/lib/jointact
+copying src/jointact/__init__.py -> build/lib/jointact
+copying src/jointact/training.py -> build/lib/jointact
+copying src/jointact/calibration.py -> build/lib/jointact
+copying src/jointact/cli.py -> build/lib/jointact
+copying src/jointact/teacher.py -> build/lib/jointact
+copying src/jointact/inference.py -> build/lib/jointact
+copying src/jointact/fixture.py -> build/lib/jointact
+copying src/jointact/serve.py -> build/lib/jointact
+copying src/jointact/metrics.py -> build/lib/jointact
+copying src/jointact/checkpoint.py -> build/lib/jointact
+creating build/lib/jointact/models
+copying src/jointact/models/__init__.py -> build/lib/jointact/models
+copying src/jointact/models/backbones.py -> build/lib/jointact/models
+copying src/jointact/models/policy.py -> build/lib/jointact/models
+creating build/lib/jointact/data
+copying src/jointact/data/prepare.py -> build/lib/jointact/data
+copying src/jointact/data/normalization.py -> build/lib/jointact/data
+copying src/jointact/data/dataset.py -> build/lib/jointact/data
+copying src/jointact/data/schema.py -> build/lib/jointact/data
+copying src/jointact/data/__init__.py -> build/lib/jointact/data
+copying src/jointact/data/codebook.py -> build/lib/jointact/data
+copying src/jointact/data/convert.py -> build/lib/jointact/data
+creating build/lib/jointact/evaluation
+copying src/jointact/evaluation/records.py -> build/lib/jointact/evaluation
+copying src/jointact/evaluation/__init__.py -> build/lib/jointact/evaluation
+copying src/jointact/evaluation/libero.py -> build/lib/jointact/evaluation
+running egg_info
+writing src/joint_act.egg-info/PKG-INFO
+writing dependency_links to src/joint_act.egg-info/dependency_links.txt
+writing entry points to src/joint_act.egg-info/entry_points.txt
+writing requirements to src/joint_act.egg-info/requires.txt
+writing top-level names to src/joint_act.egg-info/top_level.txt
+reading manifest file 'src/joint_act.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files found matching '.env'
+adding license file 'LICENSE'
+writing manifest file 'src/joint_act.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/jointact
+copying build/lib/jointact/utils.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/config.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/study.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/__init__.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/training.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/calibration.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/cli.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/teacher.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/inference.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/fixture.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/serve.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/metrics.py -> build/bdist.linux-x86_64/wheel/./jointact
+copying build/lib/jointact/checkpoint.py -> build/bdist.linux-x86_64/wheel/./jointact
+creating build/bdist.linux-x86_64/wheel/jointact/models
+copying build/lib/jointact/models/__init__.py -> build/bdist.linux-x86_64/wheel/./jointact/models
+copying build/lib/jointact/models/backbones.py -> build/bdist.linux-x86_64/wheel/./jointact/models
+copying build/lib/jointact/models/policy.py -> build/bdist.linux-x86_64/wheel/./jointact/models
+creating build/bdist.linux-x86_64/wheel/jointact/data
+copying build/lib/jointact/data/prepare.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/normalization.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/dataset.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/schema.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/__init__.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/codebook.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+copying build/lib/jointact/data/convert.py -> build/bdist.linux-x86_64/wheel/./jointact/data
+creating build/bdist.linux-x86_64/wheel/jointact/evaluation
+copying build/lib/jointact/evaluation/records.py -> build/bdist.linux-x86_64/wheel/./jointact/evaluation
+copying build/lib/jointact/evaluation/__init__.py -> build/bdist.linux-x86_64/wheel/./jointact/evaluation
+copying build/lib/jointact/evaluation/libero.py -> build/bdist.linux-x86_64/wheel/./jointact/evaluation
+running install_egg_info
+Copying src/joint_act.egg-info to build/bdist.linux-x86_64/wheel/./joint_act-0.1.0-py3.10.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/joint_act-0.1.0.dist-info/WHEEL
+creating '${REMOTE_WORKDIR}/maturity-v2/dist/.tmp-4d7z6dbn/joint_act-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'joint_act-0.1.0.dist-info/licenses/LICENSE'
+adding 'jointact/__init__.py'
+adding 'jointact/calibration.py'
+adding 'jointact/checkpoint.py'
+adding 'jointact/cli.py'
+adding 'jointact/config.py'
+adding 'jointact/fixture.py'
+adding 'jointact/inference.py'
+adding 'jointact/metrics.py'
+adding 'jointact/serve.py'
+adding 'jointact/study.py'
+adding 'jointact/teacher.py'
+adding 'jointact/training.py'
+adding 'jointact/utils.py'
+adding 'jointact/data/__init__.py'
+adding 'jointact/data/codebook.py'
+adding 'jointact/data/convert.py'
+adding 'jointact/data/dataset.py'
+adding 'jointact/data/normalization.py'
+adding 'jointact/data/prepare.py'
+adding 'jointact/data/schema.py'
+adding 'jointact/evaluation/__init__.py'
+adding 'jointact/evaluation/libero.py'
+adding 'jointact/evaluation/records.py'
+adding 'jointact/models/__init__.py'
+adding 'jointact/models/backbones.py'
+adding 'jointact/models/policy.py'
+adding 'joint_act-0.1.0.dist-info/METADATA'
+adding 'joint_act-0.1.0.dist-info/WHEEL'
+adding 'joint_act-0.1.0.dist-info/entry_points.txt'
+adding 'joint_act-0.1.0.dist-info/top_level.txt'
+adding 'joint_act-0.1.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+Successfully built joint_act-0.1.0.tar.gz and joint_act-0.1.0-py3-none-any.whl

@@ -1,0 +1,405 @@
+{
+  "suite": "libero_spatial",
+  "source": {
+    "repo": "openvla/modified_libero_rlds",
+    "revision": "6ce6aaaaabdbe590b1eef5cd29c0d33f14a08551",
+    "files": [
+      {
+        "path": "libero_spatial_no_noops/1.0.0/dataset_info.json",
+        "size": 930,
+        "sha256": "7fc2bdd61cfdafc80ff60143805954b37bdb436dfb206d13fd705dffdf863078",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/features.json",
+        "size": 9195,
+        "sha256": "d6f56537585d15aa99772c6da942e5957cceda26b57a18098ef8e3164cdaffde",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00000-of-00016",
+        "size": 118202941,
+        "sha256": "6d6360559a4b71df3bcabd9b55a75451f04375449ca5267616cbc1c21528eac5",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00001-of-00016",
+        "size": 117638784,
+        "sha256": "9b0c706e9796304dbc40be5f0ccf6a407a471cd3aecbecfc3baab2af26a2a631",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00002-of-00016",
+        "size": 124105247,
+        "sha256": "e2be727ff29840040cecbce68ee17d7118129cc64d58c2a60ea38967a7482456",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00003-of-00016",
+        "size": 114001484,
+        "sha256": "ca5c55cef57390f3e3c8a4ef0cbfe8b155b9f7e5a8b37c993f676faecbe25a3a",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00004-of-00016",
+        "size": 123511634,
+        "sha256": "c29887f8cee8d761439ec865884b8ba1877a3c3d2d886f1f0e802b93b863f268",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00005-of-00016",
+        "size": 119156456,
+        "sha256": "58dddf6a314a3c2fa6db405bf185313f0984f1778db84bcc9799279fbf5cca26",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00006-of-00016",
+        "size": 125554213,
+        "sha256": "2dfaef9cfc3786ca2b99124f220bb883c654e173fd77a1da2d77d6ae50a16373",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00007-of-00016",
+        "size": 116016812,
+        "sha256": "e86de6f6a090f7abe323debf91a04f6e19e4b22a8fe87ca40a244b4f3304fd28",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00008-of-00016",
+        "size": 115049321,
+        "sha256": "7d787a79b404b65b8cd213e004359908c2a00473531992abec7d580efce6d722",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00009-of-00016",
+        "size": 123912982,
+        "sha256": "917d05bb4c3f9938b75e08c7344e2282f72d1be97a6b20ea9938dc25ef573612",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00010-of-00016",
+        "size": 125254897,
+        "sha256": "ffa2df4872379462dcbb76e79fb79eb14770530ccfdad0ba2f676f80ed583cff",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00011-of-00016",
+        "size": 115996912,
+        "sha256": "561b132619aa8980d125ee4bac6543e1ad3f1fee4bfe9b2a81877bcb2dab829a",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00012-of-00016",
+        "size": 120268059,
+        "sha256": "d7bf2ea3e7f42a4b942d1661fad0160745062627cedb9f7e94f06c809e2fb3af",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00013-of-00016",
+        "size": 119776671,
+        "sha256": "ba8aafffa7d4bd741f21b1fca95ebf952b201f2b8440a8e140fab00dd82494b0",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00014-of-00016",
+        "size": 116903288,
+        "sha256": "6c432441521c78f87ce61e5886faa563b48869410c3d38d82b21f0de8e1a98b2",
+        "transport": "verified_existing",
+        "verified": true
+      },
+      {
+        "path": "libero_spatial_no_noops/1.0.0/libero_spatial-train.tfrecord-00015-of-00016",
+        "size": 119276849,
+        "sha256": "d58bd00542030bf10bafe262d7e294b36f8347f70a783d83bce14ef6375b953c",
+        "transport": "hf-mirror.com_official_hash_verified",
+        "verified": true
+      }
+    ],
+    "file_count": 18,
+    "total_bytes": 1914636675,
+    "all_verified": true,
+    "verified_at_unix": 1791431048.1500626
+  },
+  "audit": {
+    "episodes": 432,
+    "frames": 52970,
+    "splits": {
+      "train": 351,
+      "val": 35,
+      "test": 46
+    },
+    "signature": [
+      7,
+      8,
+      2,
+      "eef_delta_xyz_axisangle_gripper_open01"
+    ],
+    "hashes_verified": true,
+    "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4"
+  },
+  "frames_by_split": {
+    "train": 43070,
+    "val": 4380,
+    "test": 5520
+  },
+  "task_episode_counts": {
+    "pick up the black bowl next to the cookie box and place it on the plate": {
+      "train": 40,
+      "test": 2,
+      "val": 4
+    },
+    "pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate": {
+      "train": 33,
+      "test": 4,
+      "val": 5
+    },
+    "pick up the black bowl on the ramekin and place it on the plate": {
+      "train": 33,
+      "test": 4,
+      "val": 2
+    },
+    "pick up the black bowl on the stove and place it on the plate": {
+      "train": 29,
+      "test": 3,
+      "val": 3
+    },
+    "pick up the black bowl between the plate and the ramekin and place it on the plate": {
+      "train": 39,
+      "val": 3,
+      "test": 3
+    },
+    "pick up the black bowl on the cookie box and place it on the plate": {
+      "train": 33,
+      "val": 4,
+      "test": 6
+    },
+    "pick up the black bowl next to the plate and place it on the plate": {
+      "test": 5,
+      "train": 38,
+      "val": 4
+    },
+    "pick up the black bowl next to the ramekin and place it on the plate": {
+      "train": 36,
+      "val": 6,
+      "test": 3
+    },
+    "pick up the black bowl from table center and place it on the plate": {
+      "train": 32,
+      "test": 11,
+      "val": 3
+    },
+    "pick up the black bowl on the wooden cabinet and place it on the plate": {
+      "train": 38,
+      "test": 5,
+      "val": 1
+    }
+  },
+  "artifacts": {
+    "schema_version": 1,
+    "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4",
+    "codebook_sha256": "e588a20b68bdde576e9ea535c9ac01ee6166e2f59623e8f607cc5a6f481b859e",
+    "horizon": 8,
+    "num_modes": 64,
+    "action_dim": 7,
+    "proprio_dim": 8,
+    "num_images": 2,
+    "cameras": [
+      "agentview",
+      "wrist"
+    ],
+    "action_semantics": "eef_delta_xyz_axisangle_gripper_open01",
+    "fit_split": "train",
+    "seed": 42,
+    "action_normalizer": {
+      "low": [
+        -0.75,
+        -0.6642857193946838,
+        -0.9375,
+        -0.10821428894996643,
+        -0.207857146859169,
+        -0.1810714304447174,
+        0.0
+      ],
+      "high": [
+        0.9375,
+        0.8785714507102966,
+        0.9321428537368774,
+        0.10640357434749603,
+        0.1778571456670761,
+        0.1435714215040207,
+        1.0
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    "proprio_normalizer": {
+      "low": [
+        -0.2738192081451416,
+        -0.23993685841560364,
+        0.9159627556800842,
+        2.781344175338745,
+        -1.2910946607589722,
+        -0.4136607050895691,
+        0.0015464042080566287,
+        -0.039893168956041336
+      ],
+      "high": [
+        0.1358761191368103,
+        0.36190614104270935,
+        1.2874245643615723,
+        3.2901113033294678,
+        0.9100419282913208,
+        0.6236254572868347,
+        0.039934612810611725,
+        -0.0016535591566935182
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "audit": {
+      "episodes": 432,
+      "frames": 52970,
+      "splits": {
+        "train": 351,
+        "val": 35,
+        "test": 46
+      },
+      "signature": [
+        7,
+        8,
+        2,
+        "eef_delta_xyz_axisangle_gripper_open01"
+      ],
+      "hashes_verified": true,
+      "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4"
+    },
+    "codebook_report": {
+      "iterations": 40,
+      "train_quantization_mse": 0.043142515269895106,
+      "counts": [
+        727,
+        708,
+        469,
+        479,
+        985,
+        1067,
+        821,
+        337,
+        347,
+        477,
+        345,
+        407,
+        1151,
+        932,
+        792,
+        215,
+        819,
+        951,
+        800,
+        852,
+        904,
+        624,
+        687,
+        529,
+        609,
+        743,
+        1249,
+        432,
+        411,
+        811,
+        704,
+        301,
+        419,
+        609,
+        924,
+        427,
+        486,
+        290,
+        752,
+        646,
+        568,
+        573,
+        551,
+        330,
+        468,
+        681,
+        674,
+        886,
+        561,
+        674,
+        409,
+        1083,
+        693,
+        366,
+        379,
+        820,
+        579,
+        702,
+        336,
+        457,
+        729,
+        572,
+        497,
+        787
+      ],
+      "seed": 42,
+      "num_fit_chunks": 40613
+    },
+    "normalization_samples": 43070
+  },
+  "artifacts_sha256": "0cd5e78ac32dd3b172baa4cb8c82d67edf757037e910da063bf65c41fbe8b499",
+  "canonical_bytes": 11845673261,
+  "study": {
+    "runs": 12,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "variants": [
+      "joint",
+      "no_brier",
+      "prototype",
+      "regression"
+    ],
+    "source_sha256": "1796b6ed8adcae3b154c94e4a5e9467a704f7d0478db91664459397ef94e06c8",
+    "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4",
+    "plan_sha256": "95562144266f88b62c4090796a6f81ba6ecb65bf1ca14f8a7444dd2802ae8f36",
+    "training_started": false,
+    "base_model": "openvla/openvla-7b",
+    "base_revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+    "config": "configs/libero_joint.yaml with authorized remote paths"
+  },
+  "scope": "Full Spatial data and CPU preparation only; GPU training and standard task benchmarks have not run."
+}

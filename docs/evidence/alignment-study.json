@@ -1,0 +1,50 @@
+{
+  "format": "jointact-study-v1",
+  "manifest_sha256": "80738f99eea449a7a034d3297dbd5fada66aff2176a85685ac93ac4d408ae1f4",
+  "artifacts_sha256": "0cd5e78ac32dd3b172baa4cb8c82d67edf757037e910da063bf65c41fbe8b499",
+  "source_sha256": "dee635e15525704d206bc59322012036ce035c42f45498e2887fae02d0db57d2",
+  "runs": [
+    {
+      "label": "joint-seed42",
+      "variant": "joint",
+      "seed": 42,
+      "config": "configs/joint-seed42.yaml",
+      "config_sha256": "95cb431d5dd7342882b265246294ebcf2fadaec2b61922bdf737c16fc254c2fe",
+      "parent_manifest_sha256": "bb46254860b8fff099ef07b845cf4d91b92dae6d71cbc568d46281f7ecffa647"
+    },
+    {
+      "label": "aligned-seed42",
+      "variant": "aligned",
+      "seed": 42,
+      "config": "configs/aligned-seed42.yaml",
+      "config_sha256": "39b22a2dc4ecd38b9d0ae0dab1678c316cb80c25a296f9a18097efd3ede50281",
+      "parent_manifest_sha256": "bb46254860b8fff099ef07b845cf4d91b92dae6d71cbc568d46281f7ecffa647"
+    },
+    {
+      "label": "cost-seed42",
+      "variant": "cost",
+      "seed": 42,
+      "config": "configs/cost-seed42.yaml",
+      "config_sha256": "0e5b51f9a74c06e188b27cfd5b42597e3e50f57b9821b45ca3dd373216cdea03",
+      "parent_manifest_sha256": "bb46254860b8fff099ef07b845cf4d91b92dae6d71cbc568d46281f7ecffa647"
+    },
+    {
+      "label": "aligned_cost-seed42",
+      "variant": "aligned_cost",
+      "seed": 42,
+      "config": "configs/aligned_cost-seed42.yaml",
+      "config_sha256": "c3f7da6c2a2434f660547775ba51644fe5d4e9eb53acd15e2de211ba16041619",
+      "parent_manifest_sha256": "bb46254860b8fff099ef07b845cf4d91b92dae6d71cbc568d46281f7ecffa647"
+    },
+    {
+      "label": "regression-seed42",
+      "variant": "regression",
+      "seed": 42,
+      "config": "configs/regression-seed42.yaml",
+      "config_sha256": "5ecf97416a6be5188159e37af662477fd5cd2267b3d6a2f36ad2bff9e5f7a604",
+      "parent_manifest_sha256": "9fa41252887169cc33a591fb39fa4bde2f4885f68105cd9fee6a55e9d105b3ef"
+    }
+  ],
+  "comparison": "same backbone, inputs, data, optimizer budget and execution horizon; head representation varies",
+  "external_baselines": "Official OpenVLA/OFT require separate upstream reproduction; regression is an internal ablation"
+}

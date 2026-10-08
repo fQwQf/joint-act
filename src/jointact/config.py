@@ -1,6 +1,7 @@
 """Strict, serializable configuration shared by training and deployment."""
 
 from dataclasses import asdict, dataclass, field, fields
+import math
 from pathlib import Path
 from typing import Any
 
@@ -27,6 +28,7 @@ class ModelConfig:
     freeze_projector: bool = True
     gradient_checkpointing: bool = True
     residual_scale: float = 1.0
+    residual_enabled: bool = True
     head_type: str = "joint"
 
 
@@ -59,9 +61,14 @@ class TrainConfig:
     eval_batches: int = 50
     keep_checkpoints: int = 3
     resume: str | None = None
+    fork_from: str | None = None
     brier_weight: float = 0.1
     residual_weight: float = 1.0
     distill_weight: float = 0.0
+    alignment_weight: float = 0.0
+    action_cost_weight: float = 0.0
+    alignment_margin: float = 0.05
+    eval_sampling: str = "prefix"
     min_free_disk_gb: float = 2.0
     allow_shared_gpu: bool = False
 
@@ -81,6 +88,8 @@ class Config:
                 raise ValueError(f"model.{name} must be positive")
         if m.proprio_dim < 0 or m.lora_rank < 0 or m.residual_scale <= 0:
             raise ValueError("invalid proprio_dim, lora_rank or residual_scale")
+        if not isinstance(m.residual_enabled, bool):
+            raise ValueError("model.residual_enabled must be boolean")
         if m.backbone == "tiny" and m.hidden_dim % 4:
             raise ValueError("tiny hidden_dim must be divisible by four")
         if not 0 < d.crop_scale <= 1 or d.workers < 0:
@@ -94,6 +103,15 @@ class Config:
             raise ValueError("invalid optimizer or storage configuration")
         if min(t.brier_weight, t.residual_weight, t.distill_weight) < 0:
             raise ValueError("loss weights cannot be negative")
+        for name in ("alignment_weight", "action_cost_weight", "alignment_margin"):
+            if not math.isfinite(getattr(t, name)) or getattr(t, name) < 0:
+                raise ValueError(f"train.{name} must be finite and nonnegative")
+        if t.eval_sampling not in {"prefix", "uniform"}:
+            raise ValueError("eval_sampling must be prefix/uniform")
+        if m.head_type != "joint" and (t.alignment_weight or t.action_cost_weight):
+            raise ValueError("alignment and action cost require the joint head")
+        if t.alignment_weight and not m.residual_enabled:
+            raise ValueError("alignment requires enabled residuals")
         if t.distill_weight > 0 and d.teacher is None:
             raise ValueError("distillation requires data.teacher")
         if m.head_type == "regression" and t.distill_weight:

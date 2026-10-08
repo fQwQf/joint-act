@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "world_size": 2,
+  "device": "cpu",
+  "bitwise_continuation": true,
+  "tensors": 47,
+  "fixture_only": true,
+  "rank_zero_failure_propagated": true,
+  "nonfinite_failure_propagated": true,
+  "alignment_objectives": true
+}

@@ -57,6 +57,22 @@ def build_parser():
     train.add_argument("--resume")
     train.add_argument("--device")
     train.add_argument("--stop-after", type=int, help="Checkpoint and stop early without changing the LR schedule")
+    study = sub.add_parser("prepare-study", help="Generate matched joint/regression/ablation configurations")
+    study.add_argument("--config", required=True)
+    study.add_argument("--output", required=True)
+    study.add_argument("--seeds", type=int, nargs="+", default=[42, 43, 44])
+    study.add_argument("--variants", nargs="+", choices=["joint", "regression", "prototype", "no_brier", "aligned", "cost", "aligned_cost"],
+                       default=["joint", "regression", "prototype", "no_brier"])
+    study.add_argument("--joint-parent", help="Explicit objective fork inheriting optimizer/sampler/RNG and step")
+    study.add_argument("--regression-parent", help="Matched regression checkpoint for a continuation study")
+    run = sub.add_parser("run-study", help="Train, resume, evaluate offline and export each configured policy")
+    run.add_argument("--plan", required=True)
+    run.add_argument("--device")
+    run.add_argument("--world-size", type=int, default=1)
+    run.add_argument("--max-runs", type=int)
+    compare = sub.add_parser("compare-libero", help="Compare paired trials after checking evaluation controls")
+    compare.add_argument("--run", action="append", required=True, help="LABEL=EVALUATION_DIRECTORY; repeat per policy")
+    compare.add_argument("--output", required=True)
     offline = sub.add_parser("evaluate-offline")
     _runtime_arguments(offline)
     offline.add_argument("--root")
@@ -73,6 +89,16 @@ def build_parser():
         if name == "benchmark":
             prediction.add_argument("--warmup", type=int, default=5)
             prediction.add_argument("--repeats", type=int, default=30)
+            prediction.add_argument("--execute-horizon", type=int)
+    benchmark = sub.add_parser("benchmark-dataset", help="Measure varied held-out observations at batch size one")
+    _runtime_arguments(benchmark)
+    benchmark.add_argument("--root")
+    benchmark.add_argument("--split", choices=["val", "test"], default="test")
+    benchmark.add_argument("--observations", type=int, default=8)
+    benchmark.add_argument("--warmup", type=int, default=5)
+    benchmark.add_argument("--repeats", type=int, default=30)
+    benchmark.add_argument("--execute-horizon", type=int)
+    benchmark.add_argument("--output", required=True)
     export = sub.add_parser("export")
     export.add_argument("--checkpoint", required=True)
     export.add_argument("--output", required=True)
@@ -92,6 +118,8 @@ def build_parser():
     libero.add_argument("--max-steps", type=int)
     libero.add_argument("--video", action="store_true")
     libero.add_argument("--min-free-gb", type=float, default=2)
+    libero.add_argument("--resume", action="store_true")
+    libero.add_argument("--max-new-trials", type=int, help="Stop after this many additional trials; resume keeps the full protocol")
     calibration = sub.add_parser("calibrate")
     calibration.add_argument("--checkpoint", required=True)
     calibration.add_argument("--root")
@@ -156,6 +184,21 @@ def main(argv=None):
         if args["device"]:
             config.train.device = args["device"]
         result = train(config, stop_after=args["stop_after"])
+    elif command == "prepare-study":
+        from jointact.study import prepare_study
+        result = prepare_study(**args)
+    elif command == "run-study":
+        from jointact.study import run_study
+        result = run_study(**args)
+    elif command == "compare-libero":
+        from jointact.evaluation.records import compare_libero
+        runs = {}
+        for value in args["run"]:
+            label, separator, directory = value.partition("=")
+            if not separator or not label or not directory or label in runs:
+                raise ValueError("Each --run must have a unique LABEL=EVALUATION_DIRECTORY")
+            runs[label] = directory
+        result = compare_libero(runs, args["output"])
     elif command == "export":
         from jointact.checkpoint import export_bundle
         result = dict(bundle=export_bundle(**args))
@@ -178,6 +221,9 @@ def main(argv=None):
             result = runtime.predict(observation) if command == "predict" else runtime.benchmark(observation, **args)
             if output:
                 atomic_json(output, result)
+        elif command == "benchmark-dataset":
+            from jointact.inference import benchmark_dataset
+            result = benchmark_dataset(runtime, **args)
         elif command == "evaluate-offline":
             from torch.utils.data import DataLoader
             from jointact.data.dataset import EpisodeDataset
@@ -186,6 +232,8 @@ def main(argv=None):
                                      args["split"], args["artifacts"] or runtime.config.data.artifacts)
             loader = DataLoader(dataset, batch_size=args["batch_size"], collate_fn=runtime.collator)
             result = dict(split=args["split"], probability_semantics="behavior_mode_distribution",
+                          policy_identity=runtime.identity, model_config=runtime.config.model.__dict__,
+                          manifest_sha256=runtime.metadata["manifest_sha256"],
                           **evaluate(runtime.model, loader, runtime.device, runtime.precision, args["max_batches"]))
             dataset.close()
             atomic_json(args["output"], result)

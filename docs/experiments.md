@@ -12,7 +12,11 @@ The primary question is whether direct **joint** action decisions improve the su
 | Modes with/without residual | Measure quantization versus precision | Same codebook and training budget |
 | Demonstrations vs demonstrations + teacher | Measure supervision value | Same demo split, teacher cost recorded separately |
 
-The regression config is runnable. To disable residual learning for an ablation, use `train.residual_weight: 0` and retain zero initialization; verify its parameters remain at zero or explicitly freeze them before interpreting the result. A loss-weight change alone is not automatically the intended ablation if another loss sends gradient through that component.
+The regression config is runnable. For the prototype-only ablation, set
+`model.residual_enabled: false`; this freezes and bypasses the correction
+branch. `prepare-study` generates matched joint, regression, prototype-only and
+no-Brier configurations across seeds. See the [research workflow](research-workflow.md)
+for execution, diagnostics, restartable simulation and comparison commands.
 
 Original AR OpenVLA uses one camera and no explicit proprioceptive token. For an
 input-matched comparison, convert `--camera-view primary`, set `model.num_images: 1`
@@ -39,3 +43,8 @@ The implemented AR likelihood scorer supports horizon 1 and one camera. It tests
 ## Decision points
 
 If joint-head success does not improve at comparable latency, inspect codebook coverage, rare-mode error, residual size and errors after switching between modes. If prototype granularity needs very large K, compare the cost against continuous regression. Keep the simpler model if the added representation has no measured benefit; engineering completeness does not establish research novelty or efficacy.
+
+The follow-up [action-aware supervision protocol](alignment-study.md) fixes the
+codebook and backbone while varying selected-mode correction and action-cost
+supervision independently. It also specifies parent-checkpoint continuation,
+validation coverage, diagnostic interpretation, and the five-arm comparison.

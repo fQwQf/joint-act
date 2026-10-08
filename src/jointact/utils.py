@@ -30,6 +30,10 @@ def sha256(path: str | Path) -> str:
     return h.hexdigest()
 
 
+def json_digest(value) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+
+
 def atomic_json(path: str | Path, value) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -69,12 +73,26 @@ def check_gpu(device: str, allow_shared: bool = False) -> None:
     if not device.startswith("cuda") or allow_shared:
         return
     logical = int(device.split(":")[1]) if ":" in device else 0
-    visible = os.environ.get("CUDA_VISIBLE_DEVICES", "").split(",")
-    physical = visible[logical].strip() if visible != [""] else str(logical)
+    configured = os.environ.get("CUDA_VISIBLE_DEVICES")
+    visible = configured.split(",") if configured is not None else None
+    if visible is not None and (configured in {"", "-1"} or logical >= len(visible)):
+        raise RuntimeError(f"{device} is hidden by CUDA_VISIBLE_DEVICES")
+    physical = visible[logical].strip() if visible is not None else str(logical)
     match = [r for r in gpu_inventory() if str(r["index"]) == physical or r["uuid"].startswith(physical)]
     if len(match) != 1:
         raise RuntimeError(f"Cannot map device {device} to physical GPU {physical!r}")
     gpu = match[0]
+    processes = subprocess.run(
+        ["nvidia-smi", "--query-compute-apps=gpu_uuid,pid", "--format=csv,noheader,nounits"],
+        check=True, capture_output=True, text=True,
+    )
+    other_pids = []
+    for line in processes.stdout.splitlines():
+        uuid, pid = [part.strip() for part in line.split(",")]
+        if uuid == gpu["uuid"] and int(pid) != os.getpid():
+            other_pids.append(int(pid))
+    if other_pids:
+        raise RuntimeError(f"GPU occupied by compute processes {other_pids}: {gpu}")
     if gpu["used_mib"] > 1024 or gpu["utilization"] > 10:
         raise RuntimeError(f"GPU occupied: {gpu}; select a free GPU or explicitly allow sharing")
 
@@ -95,6 +113,38 @@ def distributed_context(device: str) -> tuple[int, int, torch.device]:
 def barrier() -> None:
     if dist.is_initialized():
         dist.barrier()
+
+
+def rank_zero_call(function):
+    """Propagate rank-zero I/O failures instead of leaving other ranks at a barrier."""
+    if not dist.is_initialized():
+        return function()
+    message = [None]
+    if dist.get_rank() == 0:
+        try:
+            message[0] = dict(value=function())
+        except Exception as error:
+            message[0] = dict(error=f"{type(error).__name__}: {error}")
+    dist.broadcast_object_list(message, src=0)
+    if "error" in message[0]:
+        raise RuntimeError(f"Rank-zero operation failed: {message[0]['error']}")
+    return message[0]["value"]
+
+
+def require_finite(value, message):
+    """Every rank must agree before entering the next backward/optimizer collective."""
+    finite = torch.isfinite(value).all().to(dtype=torch.int32)
+    if dist.is_initialized():
+        dist.all_reduce(finite, op=dist.ReduceOp.MIN)
+    if not finite.item():
+        raise FloatingPointError(message)
+
+
+def source_fingerprint():
+    root = Path(__file__).parent
+    files = {str(path.relative_to(root)): sha256(path) for path in sorted(root.rglob("*.py"))}
+    digest = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+    return dict(sha256=digest, files=files)
 
 
 def move_batch(batch: dict, device: torch.device) -> dict:

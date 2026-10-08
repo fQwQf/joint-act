@@ -67,6 +67,7 @@ def save_checkpoint(directory, model, optimizer, scheduler, scaler, sampler, ste
             model.processor.save_pretrained(temporary / "processor")
         atomic_json(temporary / "manifest.json", dict(format="jointact-checkpoint-v1", step=step,
                     weights_sha256=sha256(temporary / "weights.pt"), torch_version=torch.__version__,
+                    training_sha256=sha256(temporary / "training.pt"),
                     config_sha256=sha256(temporary / "config.yaml"), artifacts_sha256=sha256(temporary / "artifacts.json"),
                     python_version=platform.python_version(), base_model=config.model.pretrained,
                     base_revision=config.model.revision))

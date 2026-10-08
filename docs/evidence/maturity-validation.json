@@ -1,0 +1,185 @@
+{
+  "validation_date": "2026-10-08",
+  "runtime_location": "authorized SSH host",
+  "device": "cpu",
+  "cuda_hidden": true,
+  "source": {
+    "sha256": "1796b6ed8adcae3b154c94e4a5e9467a704f7d0478db91664459397ef94e06c8",
+    "files": {
+      "__init__.py": "f857dccff570083fa17c5591f44855b7812b41eb580a816984b554e5dd253e1f",
+      "calibration.py": "cbc67880cf71800affc600fab4323d57f04b97ef42fb2f85dbef65930cf7ed7c",
+      "checkpoint.py": "2ce45fdb892cfc0a0788c262321594ae168776ada02dcdcdcbbf3e96488bbfd4",
+      "cli.py": "82a25a7e77d08dcc80596a26d4335cc277233f090892d2dbe98f3c1b8f23793a",
+      "config.py": "478cbd5a1994827ef207c2da57f8f08017798772770bf364b79f5fb37ce98e19",
+      "data/__init__.py": "ec92b50cbdcec3d6f9afdc63db09a3948f81c267b976a8bf6c635c6ebe38bf3f",
+      "data/codebook.py": "51a19a1bd070dbf29171f8b2d1d7dcf45e4d5f074c7445819ff703c427fe6288",
+      "data/convert.py": "cc2181fc380c398014b31e3a0d09bd25c60026d18de98aded578c082ec4b8bd2",
+      "data/dataset.py": "4243fc1748fd9bf2e80ef26a2e642daeb953a504b333d0bf309f34bddd4a325c",
+      "data/normalization.py": "86efca63ce927a066caf50f01a91ab2c5c9998667909171f4e150b3ee46486f8",
+      "data/prepare.py": "7207d0a9c240a44669544f7f2c64dbda31f8a2106ba4b0b1a437f617cf580792",
+      "data/schema.py": "252cf150b6654dc4d367d23c53d04064736b64cd371c1ded6e44244b3de0fada",
+      "evaluation/__init__.py": "6f642cfb36e015d07f17d327c13d978d9c53a680922595a8006239ffdd486cfb",
+      "evaluation/libero.py": "14bf01671ced8274c3ca4c9bc18785ad9b8360e0eaeb5d28fd1310f162ac9518",
+      "evaluation/records.py": "29f68991068633ec6413950d89aa7ba4dbb430b4a23c4887117d3ea171d9e642",
+      "fixture.py": "37acdcf95bd6e141bb25ad535b6fc9cbc8bfed0eff7e6c69fdb5dbe4c3702b0a",
+      "inference.py": "1c761a291c881705474c29c3ca8afe80b398aa755407412d49baf52c160249cc",
+      "metrics.py": "5607f2e98694b88f148e45db46190032d88d3ada3b44567351846c4dbe6f9948",
+      "models/__init__.py": "b4aedc77cb6282f8cb34a3d060188974a62880cce758dfa4c132bba614f7567b",
+      "models/backbones.py": "c2fa1fe8600988e48722098bff6b817241a708a3bfc2d2ebcb1293849ae59c70",
+      "models/policy.py": "cb090412163e97c2a56227c89e7b90b7471d6f91af274e55cabd36072976c763",
+      "serve.py": "5fb377b7f37a2f9bf4d68bd8793f8bbcc4297513891e9b1acdfc5e581be86448",
+      "study.py": "c2bfd564115416fbcacf24832a54983f3aecf35af6b0a8159115b85e21987347",
+      "teacher.py": "a8a2beaa5e6dfd4b6b168aacc1982ca7fb11ca75bc67c51b9a1f44770127f85f",
+      "training.py": "db30f7f975c70652b3e183de738a6a1316945b8393248c96d4623c37b251f3ea",
+      "utils.py": "91c9e2cf9b3f51c501c6e7e325898df5c696b9332168815428ffdda51b987db8"
+    }
+  },
+  "suite": {
+    "passed": 31,
+    "elapsed_seconds": 33.03,
+    "log": "maturity-pytest.log",
+    "scope": "Full suite before final bounded-evaluation/device protocol and saved-study identity checks; affected paths rechecked below."
+  },
+  "affected_recheck": {
+    "test": "test_controlled_study_runs_and_resumes",
+    "passed": 1,
+    "elapsed_seconds": 26.6
+  },
+  "ddp": {
+    "passed": true,
+    "world_size": 2,
+    "device": "cpu",
+    "bitwise_continuation": true,
+    "tensors": 47,
+    "fixture_only": true,
+    "rank_zero_failure_propagated": true,
+    "nonfinite_failure_propagated": true
+  },
+  "libero_resume": {
+    "protocol_version": "jointact-libero-v2",
+    "protocol_sha256": "a439ad7e99c06bd9e09b10420a87f7f05e059e6b521c30a0550d04f98e3f1432",
+    "source_sha256": "1796b6ed8adcae3b154c94e4a5e9467a704f7d0478db91664459397ef94e06c8",
+    "suite": "libero_spatial",
+    "task_ids": [
+      0
+    ],
+    "trials": 2,
+    "max_steps_per_trial": 5,
+    "completed": true,
+    "successes": 0,
+    "first_record_sha256": "6e306e89f794f8622b5a5dd082c679dfec61b10d8dcd98812ff6f986a47f8e79",
+    "first_record_unchanged": true,
+    "trial_ids": [
+      0,
+      1
+    ],
+    "steps": [
+      5,
+      5
+    ],
+    "policy_identity": {
+      "weights_sha256": "054bec5937767426f5e75906bc559995a38af53e5825050cafcfdf4a46e66240",
+      "artifacts_sha256": "c6f820b785de3d4913e21436b0f8d4b8a624903ee54699c93cad15bb113f42d0",
+      "model_config_sha256": "f1d57a42ec0afbe93e11424ac6cc86244ca32054542e44d3334010a89edcfc26",
+      "base_model": "${REMOTE_WORKDIR}/random-openvla",
+      "base_revision": null,
+      "temperature": 1.0
+    },
+    "scope": "Integration only: small random upstream checkpoint previously adapted for two steps to ten real demonstrations; not a task performance benchmark."
+  },
+  "wheel": {
+    "sha256": "e3fe89799af11ff56713050e266eae5f12aa4d8d5add6093b49651226474d983",
+    "lifecycle": {
+      "passed": true,
+      "commands": [
+        [
+          "fixture",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data"
+        ],
+        [
+          "validate-data",
+          "--root",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data"
+        ],
+        [
+          "prepare",
+          "--root",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data/artifacts",
+          "--horizon",
+          "4",
+          "--num-modes",
+          "8",
+          "--iterations",
+          "6"
+        ],
+        [
+          "train",
+          "--config",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/config.yaml",
+          "--stop-after",
+          "6"
+        ],
+        [
+          "train",
+          "--config",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/config.yaml",
+          "--resume",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/run/checkpoints"
+        ],
+        [
+          "evaluate-offline",
+          "--checkpoint",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/run/checkpoints",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/test.json"
+        ],
+        [
+          "export",
+          "--checkpoint",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/run/checkpoints",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/bundle"
+        ],
+        [
+          "predict",
+          "--checkpoint",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/bundle",
+          "--observation",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/observation.json",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/prediction.json"
+        ],
+        [
+          "benchmark",
+          "--checkpoint",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/bundle",
+          "--observation",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/observation.json",
+          "--warmup",
+          "1",
+          "--repeats",
+          "3",
+          "--output",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/latency.json"
+        ],
+        [
+          "calibrate",
+          "--checkpoint",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/bundle",
+          "--root",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data",
+          "--artifacts",
+          "${REMOTE_WORKDIR}/maturity-v2/wheel-smoke/data/artifacts"
+        ]
+      ],
+      "fixture_only": true,
+      "robot_performance_evidence": false
+    },
+    "imported_from_fresh_target": true
+  },
+  "gpu_training_run": false,
+  "standard_closed_loop_benchmark_run": false
+}

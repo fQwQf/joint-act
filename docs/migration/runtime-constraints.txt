@@ -1,0 +1,14 @@
+# Selected versions observed in the validated training environment.
+# Install torch/torchvision separately for the target GPU and driver.
+transformers==4.40.1
+tokenizers==0.19.1
+peft==0.11.1
+timm==0.9.10
+accelerate==0.34.2
+huggingface-hub==0.36.1
+numpy==1.26.4
+h5py==3.16.0
+Pillow==12.1.0
+PyYAML==6.0.3
+sentencepiece==0.2.1
+safetensors==0.7.0

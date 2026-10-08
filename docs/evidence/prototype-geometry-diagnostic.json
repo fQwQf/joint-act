@@ -1,0 +1,13 @@
+{
+  "scope": "Action-only validation geometry diagnostic; no model inference or outcome labels",
+  "windows": 4380,
+  "valid_elements": 238420,
+  "l2_vs_l1_assignment_disagreement": 0.10570776255707763,
+  "l2_assigned_prototype_l1": 0.14459394881433513,
+  "l1_best_prototype_l1": 0.14336278314368855,
+  "relative_l1_reduction_using_l1_assignment": 0.008514641731151875,
+  "top2_relative_squared_distance_gap_le_10pct": 0.11347031963470319,
+  "median_top2_relative_squared_distance_gap": 0.6131687462329865,
+  "top2_gap_definition": "(second-smallest masked squared distance - smallest) / max(smallest,1e-8)",
+  "threshold_note": "10% is a descriptive diagnostic threshold, not a tuned parameter or task-success criterion"
+}

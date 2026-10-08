@@ -1,0 +1,15 @@
+.....................................                                    [100%]
+=============================== warnings summary ===============================
+tests/test_alignment.py::test_augmented_exact_resume_and_explicit_objective_fork
+tests/test_pipeline.py::test_exact_resume_export_and_inference
+tests/test_pipeline.py::test_weight_corruption_detected
+tests/test_pipeline.py::test_resume_rejects_changed_data_config
+tests/test_pipeline.py::test_disable_proprio_with_canonical_state_and_reload
+tests/test_research_lifecycle.py::test_prototype_ablation_freezes_and_bypasses_residual
+tests/test_research_lifecycle.py::test_training_state_checksum_and_dataset_benchmark
+  /tmp/jointact-1019/repo-alignment/src/jointact/training.py:158: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+    scaler = torch.cuda.amp.GradScaler(enabled=device.type == "cuda" and t.precision == "fp16")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+37 passed, 7 warnings in 36.28s
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
