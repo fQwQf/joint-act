@@ -1,6 +1,9 @@
 # Action-aware supervision study
 
 Status: implemented experimental objectives; effectiveness is not established.
+For the 120 GB whole-host limit, follow [the revised resource plan](compute-plan.md)
+and [bounded serial launch instructions](memory-safe-running.md). Calibrate RAM
+before increasing concurrency; do not launch five independent jobs together.
 This study follows the 1,000-step Spatial pilot. Its full validation L1 was
 0.177229 for JointAct and 0.179323 for the same-backbone regression control.
 The larger difference on the first 100 windows was not representative of all
