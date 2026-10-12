@@ -11,6 +11,7 @@ from jointact.utils import sha256
 
 SCHEMA_VERSION = 1
 ACTION_SEMANTICS = "eef_delta_xyz_axisangle_gripper_open01"
+P340_ACTION_SEMANTICS = "p340_base_delta_xyz_mm_gripper_open01"
 
 
 def read_manifest(root: str | Path) -> list[dict]:

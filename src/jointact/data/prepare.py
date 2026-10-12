@@ -8,7 +8,7 @@ import numpy as np
 
 from jointact.data.codebook import fit_codebook
 from jointact.data.normalization import Normalizer
-from jointact.data.schema import ACTION_SEMANTICS, read_manifest
+from jointact.data.schema import ACTION_SEMANTICS, P340_ACTION_SEMANTICS, read_manifest
 from jointact.utils import atomic_json, check_disk, sha256
 
 
@@ -74,7 +74,7 @@ def prepare_artifacts(root, output, horizon=8, num_modes=64, max_samples=100000,
             action_samples.add(file["actions"][:])
             state_samples.add(file["proprio"][:])
     mask = np.ones(rows[0]["action_dim"], bool)
-    if rows[0]["action_semantics"] == ACTION_SEMANTICS:
+    if rows[0]["action_semantics"] in {ACTION_SEMANTICS, P340_ACTION_SEMANTICS}:
         mask[-1] = False
     action = Normalizer.fit(action_samples.array(), mask)
     state = Normalizer.fit(state_samples.array())

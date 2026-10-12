@@ -145,3 +145,10 @@ The private GitHub release `migration-2026-10-08` contains the complete prepared
 Spatial dataset and saved training states as checksummed, chunked attachments.
 See the [migration guide](docs/migration/README.md) for restoration, pinned base-model
 download, environment setup and continuation on another GPU server.
+
+## P340 camera and gripper
+
+The [P340 experiment guide](docs/p340-experiments.md) covers streamed demonstration
+recording, grouped dataset splits, four-dimensional training, bounded SDK calls,
+policy serving and trial ledgers. Hardware motion requires explicit enablement and
+a calibrated workspace. CPU integration tests do not replace real-device validation.

@@ -17,7 +17,8 @@ def create_app(runtime, max_batch=16, max_image_bytes=4 * 1024 * 1024):
     @app.get("/health")
     def health():
         return dict(status="ready", backbone=runtime.config.model.backbone, horizon=runtime.config.model.horizon,
-                    action_semantics=runtime.metadata["action_semantics"])
+                    action_semantics=runtime.metadata["action_semantics"],
+                    policy_identity=getattr(runtime, "identity", None))
 
     @app.post("/predict")
     def predict(payload: dict):
@@ -43,7 +44,7 @@ def create_app(runtime, max_batch=16, max_image_bytes=4 * 1024 * 1024):
                 parsed.append(dict(images=images, proprio=record.get("proprio", []), instruction=record["instruction"]))
             with lock:
                 results = runtime.predict_batch(parsed)
-            return dict(predictions=results)
+            return dict(predictions=results, policy_identity=getattr(runtime, "identity", None))
         except (ValueError, KeyError, TypeError, binascii.Error, OSError) as error:
             raise HTTPException(status_code=422, detail=str(error)) from error
 

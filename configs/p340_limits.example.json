@@ -1,0 +1,14 @@
+{
+  "xyz_min": [150, -50, 30],
+  "xyz_max": [220, 50, 100],
+  "calibration_id": "UNCONFIGURED",
+  "gripper_closed": 0,
+  "gripper_open": 100,
+  "initial_gripper_open01": 1.0,
+  "max_delta_mm": 5.0,
+  "speed_mm_s": 10,
+  "gripper_speed": 100,
+  "observation_max_age_s": 2.0,
+  "motion_timeout_s": 10.0,
+  "gripper_settle_s": 1.0
+}

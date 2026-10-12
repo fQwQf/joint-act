@@ -13,7 +13,7 @@ import torch
 from jointact.checkpoint import load_policy, resolve_checkpoint
 from jointact.data.dataset import ObservationCollator
 from jointact.data.normalization import Normalizer
-from jointact.data.schema import ACTION_SEMANTICS
+from jointact.data.schema import ACTION_SEMANTICS, P340_ACTION_SEMANTICS
 from jointact.training import autocast_context
 from jointact.utils import atomic_json, check_gpu, json_digest, move_batch, sha256
 
@@ -88,7 +88,7 @@ class PolicyRuntime:
         normalized = output["actions"].float().cpu().numpy()
         normalized = np.clip(normalized, -1, 1)
         actions = self.action_normalizer.unnormalize(normalized)
-        if self.metadata["action_semantics"] == ACTION_SEMANTICS:
+        if self.metadata["action_semantics"] in {ACTION_SEMANTICS, P340_ACTION_SEMANTICS}:
             actions[..., -1] = np.clip(actions[..., -1], 0, 1)
         if not np.isfinite(actions).all():
             raise FloatingPointError("Policy returned nonfinite actions")
